@@ -39,7 +39,9 @@ namespace TowerDefenceMultiplayer
             var sceneService = _rootContainer.Resolve<SceneService>();
             sceneService.LoadSceneEvent += OnLoadScene;
             
-            _coroutine = new Coroutines();
+            _coroutine = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
+            Object.DontDestroyOnLoad(_coroutine);
+            
             _rootContainer.RegisterInstance(_coroutine);
 
             var defaultSceneEnterParams = new MainMenuEnterParams();
@@ -56,7 +58,7 @@ namespace TowerDefenceMultiplayer
             } 
             else if (sceneName.Equals(SceneService.MAIN_MENU_SCENE))
             {
-                _coroutine.StartCoroutine(LoadMainMenu());
+                _coroutine.StartCoroutine(LoadMainMenu(sceneEnterParams));
             }
             else if (sceneName.Equals(SceneService.GAMEPALY_SCENE))
             {
@@ -71,11 +73,15 @@ namespace TowerDefenceMultiplayer
             uIRootViewModel.ShowLoadingScreen();
         }
 
-        private IEnumerator LoadMainMenu()
+        private IEnumerator LoadMainMenu(SceneEnterParams sceneEnterParams)
         {
             var mainMenuContainer = new DIContainer(_rootContainer);
-            
-            yield return null;
+
+            var mainMenuEntryPoint = UnityExtension.GetEntryPoint<MainMenuEntryPoint>();
+
+            yield return mainMenuEntryPoint.Initialization(mainMenuContainer, sceneEnterParams);
+
+            mainMenuEntryPoint.Run();
             
             var uIRootViewModel = _rootContainer.Resolve<IUIRootViewModel>();
             uIRootViewModel.HideLoadingScreen();
