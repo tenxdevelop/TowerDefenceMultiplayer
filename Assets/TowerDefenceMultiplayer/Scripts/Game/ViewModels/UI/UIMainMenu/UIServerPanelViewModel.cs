@@ -9,13 +9,6 @@ namespace TowerDefenceMultiplayer
         public event Action OnCreatedLobbyEvent;
         public event Action OnJoinedLobbyEvent;
         
-        private SingleReactiveProperty<MainMenuExitParams> _mainMenuExitParams;
-        
-        public UIServerPanelViewModel(SingleReactiveProperty<MainMenuExitParams> mainMenuExitParams)
-        {
-            _mainMenuExitParams = mainMenuExitParams;
-        }
-        
         public override void Dispose()
         {
             

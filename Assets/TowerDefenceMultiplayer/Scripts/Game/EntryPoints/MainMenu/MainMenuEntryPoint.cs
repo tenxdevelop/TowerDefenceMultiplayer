@@ -16,12 +16,7 @@ namespace TowerDefenceMultiplayer
             var mainMenuEnterParams = sceneEnterParams as MainMenuEnterParams;
             _container = parentContainer;
             
-            MainMenuRegisterServices.RegisterServices(_container, mainMenuEnterParams);
-            
-            _container.RegisterSingleton<IUIServerPanelViewModel>(factory => new UIServerPanelViewModel(_mainMenuExitParams));
-            _container.RegisterSingleton<IUICreateLobbyMenuViewModel>(factory => new UICreateLobbyMenuViewModel(_mainMenuExitParams));
-            _container.RegisterSingleton<IUIJoinLobbyMenuViewModel>(factory => new UIJoinLobbyMenuViewModel(_mainMenuExitParams));
-            
+            MainMenuRegisterServices.RegisterServices(_container, mainMenuEnterParams, _mainMenuExitParams);
             MainMenuRegisterViewModels.RegisterViewModels(_container, mainMenuEnterParams);
             MainMenuRegisterViews.RegisterViews(_container);
             

@@ -1,18 +1,18 @@
-﻿using SkyForge.MVVM;
-using SkyForge.Reactive;
+﻿using SkyForge.Reactive;
+using SkyForge.MVVM;
 
 namespace TowerDefenceMultiplayer
 {
     public class UIJoinLobbyMenuViewModel : MenuViewModel, IUIJoinLobbyMenuViewModel
     {
         
-        private SingleReactiveProperty<MainMenuExitParams> _mainMenuExitParams;
+        private MenuNetworkService _menuNetworkService;
 
         private string _lobbyCode;
         
-        public UIJoinLobbyMenuViewModel(SingleReactiveProperty<MainMenuExitParams> mainMenuExitParams)
+        public UIJoinLobbyMenuViewModel(MenuNetworkService menuNetworkService)
         {
-            _mainMenuExitParams = mainMenuExitParams;
+            _menuNetworkService = menuNetworkService;
         }
         
         public override void Dispose()
@@ -39,11 +39,8 @@ namespace TowerDefenceMultiplayer
         [ReactiveMethod]
         public void JoinLobby(object sender)
         {
-            var lobbyEnterParams = new LobbyEnterParams(_lobbyCode, "", "", 0, false);
-            
             HideMenu();
-            
-            _mainMenuExitParams.Value = new MainMenuExitParams(lobbyEnterParams);
+            _menuNetworkService.JoinLobby(_lobbyCode);
         }
         
         [ReactiveMethod]
