@@ -8,6 +8,7 @@ namespace TowerDefenceMultiplayer
 	    public static string GAMEPALY_SCENE = "Gameplay";
 	    public static string MAIN_MENU_SCENE = "MainMenu";
 		public static string BOOTSTRAP_SCENE = "Bootstrap";
+		public static string LOBBY_SCENE = "Lobby";
 
 		public IEnumerator LoadMainMenu(MainMenuEnterParams mainMenuEnterParams)
 		{
@@ -19,6 +20,12 @@ namespace TowerDefenceMultiplayer
 		{
 			yield return LoadScene(BOOTSTRAP_SCENE);
 			yield return LoadScene(GAMEPALY_SCENE, gameplayEnterParams);
+		}
+
+		public IEnumerator LoadLobby(LobbyEnterParams lobbyEnterParams)
+		{
+			yield return LoadScene(BOOTSTRAP_SCENE);
+			yield return LoadScene(LOBBY_SCENE, lobbyEnterParams);
 		}
     }
 }

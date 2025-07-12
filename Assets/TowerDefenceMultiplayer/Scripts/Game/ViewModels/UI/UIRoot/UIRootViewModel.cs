@@ -45,14 +45,14 @@ namespace TowerDefenceMultiplayer
             Screens.Add(screenView);
         }
 
-        public void DetachStaticScreenView(UIScreenView screenView)
+        public void ClearStaticScreens()
         {
-            StaticScreens.Remove(screenView);
+            StaticScreens.Clear();
         }
 
-        public void DetachScreenView(UIScreenView screenView)
+        public void ClearScreens()
         {
-            Screens.Remove(screenView);
+            Screens.Clear();
         }
     }
 }

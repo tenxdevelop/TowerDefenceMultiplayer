@@ -7,18 +7,24 @@ namespace TowerDefenceMultiplayer
         [SubViewModel(typeof(UIServerPanelViewModel))]
         public IUIServerPanelViewModel UIServerPanelViewModel { get; private set; }
         
+        [SubViewModel(typeof(UICreateLobbyMenuViewModel))]
+        public IUICreateLobbyMenuViewModel UICreateLobbyMenuViewModel { get; private set; }
+        
         private ApplicationService _applicationService;
 
-        public UIRootMainMenuViewModel(ApplicationService applicationService,  IUIServerPanelViewModel uIServerPanelViewModel)
+        public UIRootMainMenuViewModel(ApplicationService applicationService,  IUIServerPanelViewModel uIServerPanelViewModel, IUICreateLobbyMenuViewModel uICreateLobbyMenuViewModel)
         {
             UIServerPanelViewModel = uIServerPanelViewModel;
+            UIServerPanelViewModel.OnCreatedLobbyEvent += OnCreatedLobbyCallback;
+            
+            UICreateLobbyMenuViewModel = uICreateLobbyMenuViewModel;
             
             _applicationService =  applicationService;
         }
         
         public void Dispose()
         {
-            
+            UIServerPanelViewModel.OnCreatedLobbyEvent -= OnCreatedLobbyCallback;
         }
 
         public void Update(float deltaTime)
@@ -40,7 +46,15 @@ namespace TowerDefenceMultiplayer
         [ReactiveMethod]
         public void Play(object sender)
         {
-            
+            if (!UICreateLobbyMenuViewModel.IsActiveMenu.Value)
+            {
+                UIServerPanelViewModel.ShowMenu();
+            }
+        }
+
+        private void OnCreatedLobbyCallback()
+        {
+            UICreateLobbyMenuViewModel.ShowMenu();
         }
     }
 }

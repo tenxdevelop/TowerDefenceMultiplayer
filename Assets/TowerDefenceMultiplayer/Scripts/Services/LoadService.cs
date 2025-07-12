@@ -5,6 +5,8 @@ namespace TowerDefenceMultiplayer
 {
     public class LoadService : System.IDisposable
     {
+        public static string PREFAB_NETWORK_MANAGER = "Prefabs/Network/NetworkManager";
+        
         public static string PREFAB_UI_UIROOT = "Prefabs/UI/UIRoot";
         public static string PREFAB_UI_STATIC_UIROOT_MAIN_MENU = "Prefabs/UI/MainMenu/StaticUIRootMainMenu";
         public static string PREFAB_UI_UIROOT_MAIN_MENU = "Prefabs/UI/MainMenu/UIRootMainMenu";

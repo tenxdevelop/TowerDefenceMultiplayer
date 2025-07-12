@@ -19,6 +19,7 @@ namespace TowerDefenceMultiplayer
             MainMenuRegisterServices.RegisterServices(_container, mainMenuEnterParams);
             
             _container.RegisterSingleton<IUIServerPanelViewModel>(factory => new UIServerPanelViewModel(_mainMenuExitParams));
+            _container.RegisterSingleton<IUICreateLobbyMenuViewModel>(factory => new UICreateLobbyMenuViewModel(_mainMenuExitParams));
             
             MainMenuRegisterViewModels.RegisterViewModels(_container, mainMenuEnterParams);
             MainMenuRegisterViews.RegisterViews(_container);

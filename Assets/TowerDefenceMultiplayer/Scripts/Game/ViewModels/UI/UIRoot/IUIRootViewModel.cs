@@ -15,11 +15,8 @@ namespace TowerDefenceMultiplayer
         void AttachStaticScreenView(UIScreenView screenView);
 
         void AttachScreenView(UIScreenView screenView);
-
-        void DetachStaticScreenView(UIScreenView screenView);
-
-        void DetachScreenView(UIScreenView screenView);
-        
+        void ClearStaticScreens();
+        void ClearScreens();
         void HideLoadingScreen();
     }
 }

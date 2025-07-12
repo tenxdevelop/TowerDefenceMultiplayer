@@ -1,4 +1,5 @@
 using UnityEngine.SceneManagement;
+using SkyForge.Reactive.Extention;
 using System.Collections;
 using SkyForge.Extension;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace TowerDefenceMultiplayer
             sceneService.LoadSceneEvent += OnLoadScene;
             
             _coroutine = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
-            Object.DontDestroyOnLoad(_coroutine);
+            Object.DontDestroyOnLoad(_coroutine.gameObject);
             
             _rootContainer.RegisterInstance(_coroutine);
 
@@ -64,12 +65,18 @@ namespace TowerDefenceMultiplayer
             {
                 _coroutine.StartCoroutine(LoadGameplay());
             }
+            else if (sceneName.Equals(SceneService.LOBBY_SCENE))
+            {
+                _coroutine.StartCoroutine(LoadLobby(sceneEnterParams));
+            }
         }
 
         private void LoadBootstrap()
         {
             var uIRootViewModel = _rootContainer.Resolve<IUIRootViewModel>();
-
+            
+            uIRootViewModel.ClearScreens();
+            uIRootViewModel.ClearStaticScreens();
             uIRootViewModel.ShowLoadingScreen();
         }
 
@@ -81,7 +88,17 @@ namespace TowerDefenceMultiplayer
 
             yield return mainMenuEntryPoint.Initialization(mainMenuContainer, sceneEnterParams);
 
-            mainMenuEntryPoint.Run();
+            mainMenuEntryPoint.Run().Subscribe(sceneExitParams =>
+            {
+                var sceneService = _rootContainer.Resolve<SceneService>();
+                var targetEnterParamsType = sceneExitParams.TargetEnterParams.GetType();
+
+                if (targetEnterParamsType.Equals(typeof(LobbyEnterParams)))
+                {
+                    var lobbyEnterParams = sceneExitParams.TargetEnterParams as LobbyEnterParams;
+                    _coroutine.StartCoroutine(sceneService.LoadLobby(lobbyEnterParams));
+                }
+            });
             
             var uIRootViewModel = _rootContainer.Resolve<IUIRootViewModel>();
             uIRootViewModel.HideLoadingScreen();
@@ -92,6 +109,20 @@ namespace TowerDefenceMultiplayer
             var gameplayContainer = new DIContainer(_rootContainer);
             
             yield return null;
+            
+            var uIRootViewModel = _rootContainer.Resolve<IUIRootViewModel>();
+            uIRootViewModel.HideLoadingScreen();
+        }
+
+        private IEnumerator LoadLobby(SceneEnterParams sceneEnterParams)
+        {
+            var lobbyContainer =  new DIContainer(_rootContainer);
+            
+            var lobbyEntryPoint = UnityExtension.GetEntryPoint<LobbyEntryPoint>();
+            
+            yield return lobbyEntryPoint.Initialization(lobbyContainer, sceneEnterParams);
+            
+            lobbyEntryPoint.Run();
             
             var uIRootViewModel = _rootContainer.Resolve<IUIRootViewModel>();
             uIRootViewModel.HideLoadingScreen();

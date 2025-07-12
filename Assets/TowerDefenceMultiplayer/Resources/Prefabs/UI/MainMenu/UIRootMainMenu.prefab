@@ -1326,6 +1326,7 @@ GameObject:
   - component: {fileID: 7186573042007491566}
   - component: {fileID: 4551564303062269054}
   - component: {fileID: 7884100218180113168}
+  - component: {fileID: 1016577266921297677}
   m_Layer: 0
   m_Name: CreateLobbyButton
   m_TagString: Untagged
@@ -1434,7 +1435,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4551564303062269054}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1016577266921297677}
+        m_TargetAssemblyTypeName: SkyForge.MVVM.Binders.EmptyMethodBinder, SkyForge
+        m_MethodName: Perform
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1016577266921297677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683781125217468699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7cf2d2f1de724459c6abbdbf57106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewModelTypeFullName: TowerDefenceMultiplayer.UICreateLobbyMenuViewModel
+  m_propertyName: CreateLobby
 --- !u!1 &1825038272683728382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1893,7 @@ GameObject:
   - component: {fileID: 3967172165998231242}
   - component: {fileID: 3408826459161214698}
   - component: {fileID: 5897965811264351799}
+  - component: {fileID: 4403816754575683453}
   m_Layer: 0
   m_Name: CreateLobbyButton
   m_TagString: Untagged
@@ -1974,7 +2002,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3408826459161214698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4403816754575683453}
+        m_TargetAssemblyTypeName: SkyForge.MVVM.Binders.EmptyMethodBinder, SkyForge
+        m_MethodName: Perform
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4403816754575683453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480983145435820737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7cf2d2f1de724459c6abbdbf57106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewModelTypeFullName: TowerDefenceMultiplayer.UIServerPanelViewModel
+  m_propertyName: CreateLobby
 --- !u!1 &2580068513332021142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2079,7 @@ MonoBehaviour:
   m_isParentView: 1
   m_subViews:
   - {fileID: 5171584307655111425}
+  - {fileID: 7767791815548116752}
   m_childBinders:
   - {fileID: 1530924685816835860}
   - {fileID: 2511892980004146243}
@@ -3723,6 +3778,7 @@ GameObject:
   - component: {fileID: 8613216173666420311}
   - component: {fileID: 7103348848905203048}
   - component: {fileID: 2540846329397393287}
+  - component: {fileID: 8926662906684556014}
   m_Layer: 0
   m_Name: InputField
   m_TagString: Untagged
@@ -3867,7 +3923,20 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8926662906684556014}
+        m_TargetAssemblyTypeName: SkyForge.MVVM.Binders.GenericMethodBinder`1[[System.String,
+          mscorlib
+        m_MethodName: Perform
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3889,6 +3958,20 @@ MonoBehaviour:
   isAlert: 0
   m_InputValidator: {fileID: 0}
   m_ShouldActivateOnSelect: 1
+--- !u!114 &8926662906684556014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479601748926472590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e30fe62784f6544ea20d5fd48ac2bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewModelTypeFullName: TowerDefenceMultiplayer.UICreateLobbyMenuViewModel
+  m_propertyName: SetLobbyCode
 --- !u!1 &5634821705567223893
 GameObject:
   m_ObjectHideFlags: 0
@@ -5388,13 +5471,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8503270677110655509}
   - component: {fileID: 5171584307655111425}
+  - component: {fileID: 2300178261670558105}
   m_Layer: 0
   m_Name: ServerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8503270677110655509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5433,7 +5517,41 @@ MonoBehaviour:
   m_viewModelPropertyName: UIServerPanelViewModel
   m_isParentView: 0
   m_subViews: []
-  m_childBinders: []
+  m_childBinders:
+  - {fileID: 2300178261670558105}
+  - {fileID: 4403816754575683453}
+--- !u!114 &2300178261670558105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248548447621019608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da58a32bc0e7ef4084c064e189e9b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewModelTypeFullName: TowerDefenceMultiplayer.UIServerPanelViewModel
+  m_propertyName: IsActiveMenu
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7248548447621019608}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_eventWithAnalitics:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7620825168075406214
 GameObject:
   m_ObjectHideFlags: 0
@@ -6829,6 +6947,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1422399424611446435}
+  - component: {fileID: 7767791815548116752}
+  - component: {fileID: 585186255787668194}
   m_Layer: 0
   m_Name: CreateNewLobbyMenu
   m_TagString: Untagged
@@ -6862,6 +6982,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 646.4, y: 399.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7767791815548116752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796362830098326178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6af068d08741ccbdc9939df3b895e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewModelTypeFullName: TowerDefenceMultiplayer.UICreateLobbyMenuViewModel
+  m_viewModelPropertyName: UICreateLobbyMenuViewModel
+  m_isParentView: 0
+  m_subViews: []
+  m_childBinders:
+  - {fileID: 1016577266921297677}
+  - {fileID: 8926662906684556014}
+  - {fileID: 585186255787668194}
+--- !u!114 &585186255787668194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796362830098326178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da58a32bc0e7ef4084c064e189e9b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewModelTypeFullName: TowerDefenceMultiplayer.UICreateLobbyMenuViewModel
+  m_propertyName: IsActiveMenu
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8796362830098326178}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_eventWithAnalitics:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8796980576573228471
 GameObject:
   m_ObjectHideFlags: 0
