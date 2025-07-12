@@ -1,17 +1,16 @@
-﻿using SkyForge.Reactive;
-using SkyForge.MVVM;
-using System;
+﻿using SkyForge.MVVM;
+using SkyForge.Reactive;
 
 namespace TowerDefenceMultiplayer
 {
-    public class UIServerPanelViewModel : MenuViewModel, IUIServerPanelViewModel
+    public class UIJoinLobbyMenuViewModel : MenuViewModel, IUIJoinLobbyMenuViewModel
     {
-        public event Action OnCreatedLobbyEvent;
-        public event Action OnJoinedLobbyEvent;
         
         private SingleReactiveProperty<MainMenuExitParams> _mainMenuExitParams;
+
+        private string _lobbyCode;
         
-        public UIServerPanelViewModel(SingleReactiveProperty<MainMenuExitParams> mainMenuExitParams)
+        public UIJoinLobbyMenuViewModel(SingleReactiveProperty<MainMenuExitParams> mainMenuExitParams)
         {
             _mainMenuExitParams = mainMenuExitParams;
         }
@@ -23,7 +22,7 @@ namespace TowerDefenceMultiplayer
 
         public override void Update(float deltaTime)
         {
-           
+            
         }
 
         public override void PhysicsUpdate(float deltaTime)
@@ -32,23 +31,27 @@ namespace TowerDefenceMultiplayer
         }
         
         [ReactiveMethod]
-        public void CreateLobby(object sender)
+        public void SetLobbyCode(object sender, string lobbyCode)
         {
-            OnCreatedLobbyEvent?.Invoke();
-            HideMenu();
+            
         }
-        
+    
         [ReactiveMethod]
         public void JoinLobby(object sender)
         {
-            OnJoinedLobbyEvent?.Invoke();
+            var lobbyEnterParams = new LobbyEnterParams(_lobbyCode, "", "", 0, false);
+            
             HideMenu();
+            
+            _mainMenuExitParams.Value = new MainMenuExitParams(lobbyEnterParams);
         }
         
         [ReactiveMethod]
-        public void Connection(object sender)
+        public void Cancel(object sender)
         {
+            _lobbyCode = string.Empty;
             
+            HideMenu();
         }
     }
 }

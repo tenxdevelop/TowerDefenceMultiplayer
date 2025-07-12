@@ -6,6 +6,7 @@ namespace TowerDefenceMultiplayer
     {
         IUIServerPanelViewModel UIServerPanelViewModel { get; }
         IUICreateLobbyMenuViewModel UICreateLobbyMenuViewModel { get; }
+        IUIJoinLobbyMenuViewModel UIJoinLobbyMenuViewModel { get; }
         void ExitGame(object sender);
         void Play(object sender);
     }

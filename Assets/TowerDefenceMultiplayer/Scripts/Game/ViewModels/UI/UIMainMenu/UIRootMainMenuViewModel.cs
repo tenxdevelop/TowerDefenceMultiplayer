@@ -10,14 +10,20 @@ namespace TowerDefenceMultiplayer
         [SubViewModel(typeof(UICreateLobbyMenuViewModel))]
         public IUICreateLobbyMenuViewModel UICreateLobbyMenuViewModel { get; private set; }
         
+        [SubViewModel(typeof(UIJoinLobbyMenuViewModel))]
+        public IUIJoinLobbyMenuViewModel UIJoinLobbyMenuViewModel { get; private set; }
+        
         private ApplicationService _applicationService;
 
-        public UIRootMainMenuViewModel(ApplicationService applicationService,  IUIServerPanelViewModel uIServerPanelViewModel, IUICreateLobbyMenuViewModel uICreateLobbyMenuViewModel)
+        public UIRootMainMenuViewModel(ApplicationService applicationService,  IUIServerPanelViewModel uIServerPanelViewModel, IUICreateLobbyMenuViewModel uICreateLobbyMenuViewModel,
+            IUIJoinLobbyMenuViewModel uIJoinLobbyMenuViewModel)
         {
             UIServerPanelViewModel = uIServerPanelViewModel;
             UIServerPanelViewModel.OnCreatedLobbyEvent += OnCreatedLobbyCallback;
+            UIServerPanelViewModel.OnJoinedLobbyEvent += OnJoinedLobbyCallback;
             
             UICreateLobbyMenuViewModel = uICreateLobbyMenuViewModel;
+            UIJoinLobbyMenuViewModel = uIJoinLobbyMenuViewModel;
             
             _applicationService =  applicationService;
         }
@@ -25,6 +31,7 @@ namespace TowerDefenceMultiplayer
         public void Dispose()
         {
             UIServerPanelViewModel.OnCreatedLobbyEvent -= OnCreatedLobbyCallback;
+            UIServerPanelViewModel.OnJoinedLobbyEvent -= OnJoinedLobbyCallback;
         }
 
         public void Update(float deltaTime)
@@ -55,6 +62,11 @@ namespace TowerDefenceMultiplayer
         private void OnCreatedLobbyCallback()
         {
             UICreateLobbyMenuViewModel.ShowMenu();
+        }
+
+        private void OnJoinedLobbyCallback()
+        {
+            UIJoinLobbyMenuViewModel.ShowMenu();
         }
     }
 }

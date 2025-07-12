@@ -1,12 +1,10 @@
 ﻿using SkyForge.Reactive;
 using SkyForge.MVVM;
-using UnityEngine;
 
 namespace TowerDefenceMultiplayer
 {
-    public class UICreateLobbyMenuViewModel : IUICreateLobbyMenuViewModel
+    public class UICreateLobbyMenuViewModel : MenuViewModel, IUICreateLobbyMenuViewModel
     {
-        public ReactiveProperty<bool> IsActiveMenu { get; } = new();
         
         private SingleReactiveProperty<MainMenuExitParams> _mainMenuExitParams;
         
@@ -20,31 +18,21 @@ namespace TowerDefenceMultiplayer
             _mainMenuExitParams = mainMenuExitParams;
         }
         
-        public void Dispose()
+        public override void Dispose()
         {
             
         }
 
-        public void Update(float deltaTime)
+        public override void Update(float deltaTime)
         {
             
         }
 
-        public void PhysicsUpdate(float deltaTime)
+        public override void PhysicsUpdate(float deltaTime)
         {
             
         }
-
-        public void HideMenu()
-        {
-            IsActiveMenu.Value = false;
-        }
-
-        public void ShowMenu()
-        {
-            IsActiveMenu.Value = true;
-        }
-
+        
         [ReactiveMethod]
         public void SetLobbyCode(object sender, string lobbyCode)
         {
