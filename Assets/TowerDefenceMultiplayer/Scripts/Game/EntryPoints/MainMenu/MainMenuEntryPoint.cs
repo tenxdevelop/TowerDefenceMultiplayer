@@ -18,6 +18,7 @@ namespace TowerDefenceMultiplayer
             
             MainMenuRegisterServices.RegisterServices(_container, mainMenuEnterParams);
             MainMenuRegisterViewModels.RegisterViewModels(_container, mainMenuEnterParams);
+            MainMenuRegisterViews.RegisterViews(_container);
             
             Debug.Log("Init main menu");
             yield return null;

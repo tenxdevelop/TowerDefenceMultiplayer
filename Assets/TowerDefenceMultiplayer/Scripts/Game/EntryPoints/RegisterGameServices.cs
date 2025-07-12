@@ -8,6 +8,7 @@ namespace TowerDefenceMultiplayer
         {
             container.RegisterSingleton<SceneService>(factory => new SceneService());
             container.RegisterSingleton<LoadService>(factory => new LoadService());
+            container.RegisterSingleton<ApplicationService>(factory => new ApplicationService());
         }
     }
 }
