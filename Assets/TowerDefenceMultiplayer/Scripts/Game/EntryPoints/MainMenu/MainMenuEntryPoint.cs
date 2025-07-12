@@ -8,7 +8,7 @@ namespace TowerDefenceMultiplayer
 {
     public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
     {
-        private SingleReactiveProperty<MainMenuExitParams> _mainMenuExitParams;
+        private SingleReactiveProperty<MainMenuExitParams> _mainMenuExitParams = new();
         private DIContainer _container;
         
         public IEnumerator Initialization(DIContainer parentContainer, SceneEnterParams sceneEnterParams)
@@ -17,6 +17,9 @@ namespace TowerDefenceMultiplayer
             _container = parentContainer;
             
             MainMenuRegisterServices.RegisterServices(_container, mainMenuEnterParams);
+            
+            _container.RegisterSingleton<IUIServerPanelViewModel>(factory => new UIServerPanelViewModel(_mainMenuExitParams));
+            
             MainMenuRegisterViewModels.RegisterViewModels(_container, mainMenuEnterParams);
             MainMenuRegisterViews.RegisterViews(_container);
             

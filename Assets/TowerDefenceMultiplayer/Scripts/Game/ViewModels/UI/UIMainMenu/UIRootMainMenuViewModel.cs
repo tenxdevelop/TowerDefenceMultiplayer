@@ -4,11 +4,15 @@ namespace TowerDefenceMultiplayer
 {
     public class UIRootMainMenuViewModel : IUIRootMainMenuViewModel
     {
-
+        [SubViewModel(typeof(UIServerPanelViewModel))]
+        public IUIServerPanelViewModel UIServerPanelViewModel { get; private set; }
+        
         private ApplicationService _applicationService;
 
-        public UIRootMainMenuViewModel(ApplicationService applicationService)
+        public UIRootMainMenuViewModel(ApplicationService applicationService,  IUIServerPanelViewModel uIServerPanelViewModel)
         {
+            UIServerPanelViewModel = uIServerPanelViewModel;
+            
             _applicationService =  applicationService;
         }
         
