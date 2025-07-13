@@ -10,7 +10,7 @@ namespace TowerDefenceMultiplayer
         {
             //Register commands
             var commandProcessor = new CommandProcessor();
-            var gameStateModel = container.Resolve<IGameStateProvider>().ProxyState;
+            var gameStateModel = container.Resolve<IGameStateProvider>().StateModel;
             
             commandProcessor.RegisterCommandHandler(new CmdCreatePlayerHandler(gameStateModel, container.Resolve<IEntityFactoryService>()));
             

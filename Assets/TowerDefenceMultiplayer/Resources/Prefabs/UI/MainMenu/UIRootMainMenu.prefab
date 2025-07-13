@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_viewModelTypeFullName: TowerDefenceMultiplayer.UIJoinLobbyMenuViewModel
-  m_propertyName: IsActiveMenu
+  m_propertyName: IsActive
   m_event:
     m_PersistentCalls:
       m_Calls:
@@ -5644,7 +5644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_viewModelTypeFullName: TowerDefenceMultiplayer.UIServerPanelViewModel
-  m_propertyName: IsActiveMenu
+  m_propertyName: IsActive
   m_event:
     m_PersistentCalls:
       m_Calls:
@@ -7181,7 +7181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_viewModelTypeFullName: TowerDefenceMultiplayer.UICreateLobbyMenuViewModel
-  m_propertyName: IsActiveMenu
+  m_propertyName: IsActive
   m_event:
     m_PersistentCalls:
       m_Calls:

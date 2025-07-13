@@ -1,8 +1,9 @@
-﻿using SkyForge.MVVM;
+﻿using SkyForge.Extension;
+using SkyForge.MVVM;
 
 namespace TowerDefenceMultiplayer
 {
-    public class UICreateLobbyMenuViewModel : MenuViewModel, IUICreateLobbyMenuViewModel
+    public class UICreateLobbyMenuViewModel : UIMenuPanelViewModel, IUICreateLobbyMenuViewModel
     {
 
         private MenuNetworkService _menuNetworkService;

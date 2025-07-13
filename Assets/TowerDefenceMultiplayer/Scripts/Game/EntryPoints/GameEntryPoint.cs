@@ -1,5 +1,5 @@
 using UnityEngine.SceneManagement;
-using SkyForge.Reactive.Extention;
+using SkyForge.Reactive.Extension;
 using System.Collections;
 using SkyForge.Extension;
 using UnityEngine;

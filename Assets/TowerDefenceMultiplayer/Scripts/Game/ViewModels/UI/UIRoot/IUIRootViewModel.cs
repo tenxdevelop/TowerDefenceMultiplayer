@@ -1,3 +1,4 @@
+using SkyForge.Extension;
 using SkyForge.Reactive;
 using SkyForge.MVVM;
 

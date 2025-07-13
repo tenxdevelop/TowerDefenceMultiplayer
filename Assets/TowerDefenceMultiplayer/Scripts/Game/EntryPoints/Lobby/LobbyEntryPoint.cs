@@ -44,7 +44,7 @@ namespace TowerDefenceMultiplayer
         {
             if (IsServer)
             {
-                NetworkManager.Singleton.OnClientConnectedCallback +=  OnClientConnected;
+                NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
             }
         }
         

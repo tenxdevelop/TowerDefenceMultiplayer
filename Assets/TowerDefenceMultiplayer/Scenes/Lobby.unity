@@ -249,8 +249,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1941733204}
-  - component: {fileID: 1941733203}
   - component: {fileID: 1941733205}
+  - component: {fileID: 1941733203}
   m_Layer: 0
   m_Name: EntryPoint
   m_TagString: Untagged
@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b1740fe45940d687607d9915d1b82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!4 &1941733204
 Transform:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
-﻿
+﻿using SkyForge.Extension;
+
 namespace TowerDefenceMultiplayer
 {
-    public interface IUIJoinLobbyMenuViewModel : IMenuViewModel
+    public interface IUIJoinLobbyMenuViewModel : IUIMenuPanelViewModel
     {
         void SetLobbyCode(object sender, string lobbyCode);
         

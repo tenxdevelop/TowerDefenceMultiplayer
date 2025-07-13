@@ -1,4 +1,4 @@
-﻿using SkyForge.Reactive.Extention;
+﻿using SkyForge.Reactive.Extension;
 using SkyForge.Reactive;
 using UnityEngine;
 

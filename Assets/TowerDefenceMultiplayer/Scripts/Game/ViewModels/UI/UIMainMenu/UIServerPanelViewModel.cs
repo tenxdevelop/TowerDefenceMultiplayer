@@ -1,10 +1,10 @@
-﻿using SkyForge.Reactive;
+﻿using SkyForge.Extension;
 using SkyForge.MVVM;
 using System;
 
 namespace TowerDefenceMultiplayer
 {
-    public class UIServerPanelViewModel : MenuViewModel, IUIServerPanelViewModel
+    public class UIServerPanelViewModel : UIMenuPanelViewModel, IUIServerPanelViewModel
     {
         public event Action OnCreatedLobbyEvent;
         public event Action OnJoinedLobbyEvent;

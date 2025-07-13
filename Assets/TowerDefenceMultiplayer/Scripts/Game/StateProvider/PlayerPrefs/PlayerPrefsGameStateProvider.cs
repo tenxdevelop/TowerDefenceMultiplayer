@@ -1,4 +1,4 @@
-﻿using SkyForge.Reactive.Extention;
+﻿using SkyForge.Reactive.Extension;
 using System.Collections.Generic;
 using SkyForge.Reactive;
 
@@ -7,7 +7,8 @@ namespace TowerDefenceMultiplayer
     public class PlayerPrefsGameStateProvider : IGameStateProvider
     {
         private const string GAME_STATE_KEY = nameof(GAME_STATE_KEY);
-        public GameStateModel ProxyState { get; private set; }
+        
+        public GameStateModel StateModel { get; private set; }
         
         
         public PlayerPrefsGameStateProvider(IEntityFactoryService entityFactoryService)
@@ -17,7 +18,7 @@ namespace TowerDefenceMultiplayer
                 entities = new List<EntityStateData>()
             };
             
-            ProxyState = new GameStateModel(gameStateData, entityFactoryService);
+            StateModel = new GameStateModel(gameStateData, entityFactoryService);
         }
         
         public void Dispose()
@@ -38,7 +39,7 @@ namespace TowerDefenceMultiplayer
 
         public IObservable<GameStateModel> LoadState()
         {
-            return Observable.Return(ProxyState);
+            return Observable.Return(StateModel);
         }
 
         

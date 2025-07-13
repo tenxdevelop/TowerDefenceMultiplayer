@@ -1,8 +1,9 @@
-﻿using System;
+﻿using SkyForge.Extension;
+using System;
 
 namespace TowerDefenceMultiplayer
 {
-    public interface IUIServerPanelViewModel : IMenuViewModel
+    public interface IUIServerPanelViewModel : IUIMenuPanelViewModel
     {
         event Action OnCreatedLobbyEvent;
         event Action OnJoinedLobbyEvent;

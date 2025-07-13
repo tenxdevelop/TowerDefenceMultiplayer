@@ -1,4 +1,4 @@
-﻿using SkyForge.Reactive.Extention;
+﻿using SkyForge.Reactive.Extension;
 using System.Collections.Generic;
 using SkyForge.Reactive;
 using System.Linq;

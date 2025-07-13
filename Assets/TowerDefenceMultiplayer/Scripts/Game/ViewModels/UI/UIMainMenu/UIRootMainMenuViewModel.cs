@@ -53,7 +53,7 @@ namespace TowerDefenceMultiplayer
         [ReactiveMethod]
         public void Play(object sender)
         {
-            if (!UICreateLobbyMenuViewModel.IsActiveMenu.Value)
+            if (!UICreateLobbyMenuViewModel.IsActive.Value)
             {
                 UIServerPanelViewModel.ShowMenu();
             }

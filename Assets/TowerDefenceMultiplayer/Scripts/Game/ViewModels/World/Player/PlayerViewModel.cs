@@ -1,7 +1,12 @@
-﻿namespace TowerDefenceMultiplayer
+﻿using SkyForge.Reactive;
+using UnityEngine;
+
+namespace TowerDefenceMultiplayer
 {
     public class PlayerViewModel : IPlayerViewModel
     {
+        public ReactiveProperty<Vector3> Position => _playerModel.Position;
+
         private IPlayerModel _playerModel;
         private IPlayerService _playerService;
         

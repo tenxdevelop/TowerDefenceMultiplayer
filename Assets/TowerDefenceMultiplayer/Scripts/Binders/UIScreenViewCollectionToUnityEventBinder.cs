@@ -1,5 +1,6 @@
 using SkyForge.MVVM.Binders;
 using UnityEngine.Events;
+using SkyForge.Extension;
 using SkyForge.Reactive;
 using SkyForge.MVVM;
 using UnityEngine;
