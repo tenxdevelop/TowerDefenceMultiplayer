@@ -6,11 +6,13 @@ namespace TowerDefenceMultiplayer
     public class LoadService : System.IDisposable
     {
         public const string PREFAB_NETWORK_MANAGER = "Prefabs/Network/NetworkManager";
+        public const string PREFAB_NETWORK_PLAYER = "Prefabs/Network/Player";
         
         public const string PREFAB_UI_UIROOT = "Prefabs/UI/UIRoot";
         public const string PREFAB_UI_STATIC_UIROOT_MAIN_MENU = "Prefabs/UI/MainMenu/StaticUIRootMainMenu";
         public const string PREFAB_UI_UIROOT_MAIN_MENU = "Prefabs/UI/MainMenu/UIRootMainMenu";
         
+        public const string PREFAB_WORLD_WORLDROOT = "Prefabs/World/WorldRoot";
         public T LoadPrefab<T>(string prefabPath) where T : Object
         {
             var prefab = Resources.Load<T>(prefabPath);

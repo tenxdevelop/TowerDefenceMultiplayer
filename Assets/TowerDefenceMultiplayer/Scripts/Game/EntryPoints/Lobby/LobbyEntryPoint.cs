@@ -7,7 +7,7 @@ using SkyForge;
 
 namespace TowerDefenceMultiplayer
 {
-    public class LobbyEntryPoint : MonoBehaviour, IEntryPoint
+    public class LobbyEntryPoint : NetworkBehaviour, IEntryPoint
     {
         private SingleReactiveProperty<LobbyExitParams> _lobbyExitParams = new();
         
@@ -18,6 +18,8 @@ namespace TowerDefenceMultiplayer
             _container = parentContainer;
             
             LobbyRegisterServices.RegisterServices(_container, lobbyEnterParams, _lobbyExitParams);
+            LobbyRegisterViewModels.RegisterViewModels(_container, lobbyEnterParams);
+            LobbyRegisterViews.RegisterViews(_container);
             
             yield return null;
             
@@ -38,9 +40,39 @@ namespace TowerDefenceMultiplayer
             }
         }
 
+        public override void OnNetworkSpawn()
+        {
+            if (IsServer)
+            {
+                NetworkManager.Singleton.OnClientConnectedCallback +=  OnClientConnected;
+            }
+        }
+        
+        public override void OnNetworkDespawn()
+        {
+            if (IsServer)
+            {
+                NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+            }
+        }
+
         public IObservable<SceneExitParams> Run()
         {
             return _lobbyExitParams;
+        }
+        
+        private void OnClientConnected(ulong clientId)
+        {
+            var playerService = _container.Resolve<IPlayerService>();
+            playerService.CreatePlayer(clientId, "", GetRandomPositionSpawn());
+        }
+
+        private Vector3 GetRandomPositionSpawn()
+        {
+            var randomPositionX = Random.Range(-10f, 10f);
+            var randomPositionZ = Random.Range(-10f, 10f);
+            
+            return  new Vector3(randomPositionX, 1f, randomPositionZ);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SkyForge.Reactive.Extention;
+using System.Collections.Generic;
 using SkyForge.Reactive;
 
 namespace TowerDefenceMultiplayer
@@ -11,7 +12,10 @@ namespace TowerDefenceMultiplayer
         
         public PlayerPrefsGameStateProvider(IEntityFactoryService entityFactoryService)
         {
-            var gameStateData = new GameStateData();
+            var gameStateData = new GameStateData()
+            {
+                entities = new List<EntityStateData>()
+            };
             
             ProxyState = new GameStateModel(gameStateData, entityFactoryService);
         }

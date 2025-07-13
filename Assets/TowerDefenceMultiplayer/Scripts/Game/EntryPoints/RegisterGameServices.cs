@@ -12,6 +12,7 @@ namespace TowerDefenceMultiplayer
             
             container.RegisterSingleton<IEntityFactoryService>(factory => new EntityFactoryService());
             container.RegisterSingleton<IGameStateProvider>(factory => new PlayerPrefsGameStateProvider(factory.Resolve<IEntityFactoryService>()));
+            
         }
     }
 }

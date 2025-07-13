@@ -15,6 +15,10 @@ namespace TowerDefenceMultiplayer
             commandProcessor.RegisterCommandHandler(new CmdCreatePlayerHandler(gameStateModel, container.Resolve<IEntityFactoryService>()));
             
             container.RegisterInstance<ICommandProcessor>(commandProcessor);
+            
+            //Register services
+            
+            container.RegisterSingleton<IPlayerService>(factory => new PlayerService(gameStateModel.Entities, factory.Resolve<ICommandProcessor>()));
         }
     }
 }

@@ -14,9 +14,10 @@ namespace TowerDefenceMultiplayer
         public EntityType EntityType =>  OriginState.entityType;
         
         public int UniqueId =>  OriginState.uniqueId;
-
+        
         public string ConfigId => OriginState.configId;
-
+        
+        public ulong ClientId => OriginState.clientId;
         public PlayerModel(PlayerData originState)
         {
             OriginState = originState;

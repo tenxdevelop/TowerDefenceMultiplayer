@@ -116,12 +116,12 @@ namespace TowerDefenceMultiplayer
 
         private IEnumerator LoadLobby(SceneEnterParams sceneEnterParams)
         {
-            var lobbyContainer =  new DIContainer(_rootContainer);
+            var lobbyContainer = new DIContainer(_rootContainer);
             
             var lobbyEntryPoint = UnityExtension.GetEntryPoint<LobbyEntryPoint>();
             
             //Load game state
-            var gameStateProvider = _rootContainer.Resolve<IGameStateProvider>();
+            var gameStateProvider = lobbyContainer.Resolve<IGameStateProvider>();
             gameStateProvider.LoadState();
             
             yield return lobbyEntryPoint.Initialization(lobbyContainer, sceneEnterParams);

@@ -20,6 +20,7 @@ namespace TowerDefenceMultiplayer
             
             var newPlayerData = new PlayerData()
             {
+                clientId = command.ClientId,
                 healthPoint =  100,
                 entityType = EntityType.Player,
                 uniqueId = entityId,
