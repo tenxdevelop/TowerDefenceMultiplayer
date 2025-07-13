@@ -5,10 +5,10 @@ namespace TowerDefenceMultiplayer
 {
     public class SceneService : BaseSceneService
     { 
-	    public static string GAMEPALY_SCENE = "Gameplay";
-	    public static string MAIN_MENU_SCENE = "MainMenu";
-		public static string BOOTSTRAP_SCENE = "Bootstrap";
-		public static string LOBBY_SCENE = "Lobby";
+	    public const string GAMEPALY_SCENE = "Gameplay";
+	    public const string MAIN_MENU_SCENE = "MainMenu";
+		public const string BOOTSTRAP_SCENE = "Bootstrap";
+		public const string LOBBY_SCENE = "Lobby";
 
 		public IEnumerator LoadMainMenu(MainMenuEnterParams mainMenuEnterParams)
 		{

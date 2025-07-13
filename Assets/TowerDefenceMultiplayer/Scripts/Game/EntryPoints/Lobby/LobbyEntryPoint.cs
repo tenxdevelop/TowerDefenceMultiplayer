@@ -17,6 +17,8 @@ namespace TowerDefenceMultiplayer
             var lobbyEnterParams = sceneEnterParams as LobbyEnterParams;
             _container = parentContainer;
             
+            LobbyRegisterServices.RegisterServices(_container, lobbyEnterParams, _lobbyExitParams);
+            
             yield return null;
             
             var loadService = _container.Resolve<LoadService>();

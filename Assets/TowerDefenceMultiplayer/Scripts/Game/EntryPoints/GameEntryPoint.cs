@@ -120,6 +120,10 @@ namespace TowerDefenceMultiplayer
             
             var lobbyEntryPoint = UnityExtension.GetEntryPoint<LobbyEntryPoint>();
             
+            //Load game state
+            var gameStateProvider = _rootContainer.Resolve<IGameStateProvider>();
+            gameStateProvider.LoadState();
+            
             yield return lobbyEntryPoint.Initialization(lobbyContainer, sceneEnterParams);
             
             lobbyEntryPoint.Run();
