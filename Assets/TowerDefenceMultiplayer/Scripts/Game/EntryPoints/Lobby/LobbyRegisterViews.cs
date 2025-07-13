@@ -4,7 +4,7 @@ namespace TowerDefenceMultiplayer
 {
     public static class LobbyRegisterViews
     {
-        public static void RegisterViews(DIContainer container)
+        public static void RegisterServerViews(DIContainer container)
         {
             var loadService = container.Resolve<LoadService>();
 
@@ -12,6 +12,11 @@ namespace TowerDefenceMultiplayer
             var worldRootViewModel = container.Resolve<IWorldRootViewModel>();
             
             loadService.CreateView(prefabWorldView, worldRootViewModel);
+        }
+
+        public static void RegisterClientViews(DIContainer container)
+        {
+            
         }
     }
 }

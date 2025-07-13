@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+
+using System.Collections.Generic;
 using SkyForge.MVVM.Editors;
 using SkyForge.Reactive;
 using SkyForge.MVVM;
@@ -26,3 +28,5 @@ namespace TowerDefenceMultiplayer.Editor
         }
     }
 }
+
+#endif

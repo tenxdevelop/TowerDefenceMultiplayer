@@ -6,7 +6,7 @@ namespace TowerDefenceMultiplayer
 {
     public static class LobbyRegisterServices
     {
-        public static void RegisterServices(DIContainer container, LobbyEnterParams lobbyEnterParams, SingleReactiveProperty<LobbyExitParams> lobbyExitParams)
+        public static void RegisterServerServices(DIContainer container, LobbyEnterParams lobbyEnterParams, SingleReactiveProperty<LobbyExitParams> lobbyExitParams)
         {
             //Register commands
             var commandProcessor = new CommandProcessor();
@@ -17,8 +17,12 @@ namespace TowerDefenceMultiplayer
             container.RegisterInstance<ICommandProcessor>(commandProcessor);
             
             //Register services
-            
             container.RegisterSingleton<IPlayerService>(factory => new PlayerService(gameStateModel.Entities, factory.Resolve<ICommandProcessor>()));
+        }
+
+        public static void RegisterClientServices(DIContainer container, LobbyEnterParams lobbyEnterParams, SingleReactiveProperty<LobbyExitParams> lobbyExitParams)
+        {
+            container.RegisterSingleton<ClientFactoryViewModel>(factory => new ClientFactoryViewModel(factory));
         }
     }
 }

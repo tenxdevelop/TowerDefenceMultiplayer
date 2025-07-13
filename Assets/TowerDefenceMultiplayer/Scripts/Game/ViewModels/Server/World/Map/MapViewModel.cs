@@ -4,7 +4,7 @@ namespace TowerDefenceMultiplayer
 {
     public class MapViewModel : IMapViewModel
     {
-        public ReactiveCollection<IPlayerViewModel> Players { get; private set; }
+        public ReactiveCollection<IPlayerServerViewModel> Players { get; private set; }
 
         public MapViewModel(IPlayerService playerService)
         {

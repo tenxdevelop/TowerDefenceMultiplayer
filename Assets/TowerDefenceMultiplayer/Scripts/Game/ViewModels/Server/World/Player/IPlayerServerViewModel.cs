@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TowerDefenceMultiplayer
 {
-    public interface IPlayerViewModel : INetworkViewModel
+    public interface IPlayerServerViewModel : INetworkViewModel
     {
         ReactiveProperty<Vector3> Position { get; }
     }

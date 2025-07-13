@@ -8,9 +8,9 @@ namespace TowerDefenceMultiplayer
 {
     public class PlayerService : IPlayerService
     {
-        public ReactiveCollection<IPlayerViewModel> Players { get; private set; }
+        public ReactiveCollection<IPlayerServerViewModel> Players { get; private set; }
 
-        private readonly Dictionary<int, IPlayerViewModel> _playersMap;
+        private readonly Dictionary<int, IPlayerServerViewModel> _playersMap;
         
         private ICommandProcessor _commandProcessor;
         
@@ -18,7 +18,7 @@ namespace TowerDefenceMultiplayer
         {
             _commandProcessor =  commandProcessor;
             
-            _playersMap = new Dictionary<int, IPlayerViewModel>();
+            _playersMap = new Dictionary<int, IPlayerServerViewModel>();
             
             UpdatePlayers(entities);
         }
@@ -38,7 +38,7 @@ namespace TowerDefenceMultiplayer
 
         private void UpdatePlayers(ReactiveCollection<IEntityStateModel> entities)
         {
-            Players = new ReactiveCollection<IPlayerViewModel>();
+            Players = new ReactiveCollection<IPlayerServerViewModel>();
             
             foreach (var entity in entities)
             {
@@ -70,7 +70,7 @@ namespace TowerDefenceMultiplayer
             if (entityStateModel.EntityType.Equals(EntityType.Player))
             {
                 var playerModel = entityStateModel as IPlayerModel;
-                var playerViewModel = new PlayerViewModel(playerModel, this);
+                var playerViewModel = new PlayerServerViewModel(playerModel, this);
                 Players.Add(playerViewModel);
                 _playersMap[entityStateModel.UniqueId] = playerViewModel;
             }

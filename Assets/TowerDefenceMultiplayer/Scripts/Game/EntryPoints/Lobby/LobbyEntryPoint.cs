@@ -2,6 +2,7 @@
 using SkyForge.Extension;
 using SkyForge.Reactive;
 using Unity.Netcode;
+using SkyForge.MVVM;
 using UnityEngine;
 using SkyForge;
 
@@ -16,43 +17,61 @@ namespace TowerDefenceMultiplayer
         {
             var lobbyEnterParams = sceneEnterParams as LobbyEnterParams;
             _container = parentContainer;
-            
-            LobbyRegisterServices.RegisterServices(_container, lobbyEnterParams, _lobbyExitParams);
-            LobbyRegisterViewModels.RegisterViewModels(_container, lobbyEnterParams);
-            LobbyRegisterViews.RegisterViews(_container);
-            
-            yield return null;
-            
+
             var loadService = _container.Resolve<LoadService>();
-            
             var prefabNetworkManager = loadService.LoadPrefab<NetworkManager>(LoadService.PREFAB_NETWORK_MANAGER);
             var networkManager = loadService.CreateGameObject(prefabNetworkManager);
             DontDestroyOnLoad(networkManager.gameObject);
             
-            
             if (lobbyEnterParams.IsHost)
             {
+                
+                LobbyRegisterServices.RegisterServerServices(_container, lobbyEnterParams, _lobbyExitParams);
+                LobbyRegisterViewModels.RegisterServerViewModels(_container, lobbyEnterParams);
+                LobbyRegisterViews.RegisterServerViews(_container);
+                
+                LobbyRegisterServices.RegisterClientServices(_container, lobbyEnterParams,  _lobbyExitParams);
+                LobbyRegisterViewModels.RegisterClientViewModels(_container, lobbyEnterParams);
+                LobbyRegisterViews.RegisterClientViews(_container);
+                
+                ClientNetworkService.Instance.NetworkClientViewCreatedEvent += OnNetworkClientViewCreated;
+                
                 networkManager.StartHost();
             }
             else
             {
+                LobbyRegisterServices.RegisterClientServices(_container, lobbyEnterParams,  _lobbyExitParams);
+                LobbyRegisterViewModels.RegisterClientViewModels(_container, lobbyEnterParams);
+                LobbyRegisterViews.RegisterClientViews(_container);
+                
+                ClientNetworkService.Instance.NetworkClientViewCreatedEvent += OnNetworkClientViewCreated;
+                
                 networkManager.StartClient();
             }
+
+            yield return null;
+            
         }
 
         public override void OnNetworkSpawn()
         {
             if (IsServer)
             {
-                NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+                NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedInServer;
             }
+            
         }
         
         public override void OnNetworkDespawn()
         {
             if (IsServer)
             {
-                NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+                NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedInServer;
+            }
+
+            if (IsClient)
+            {
+                ClientNetworkService.Instance.NetworkClientViewCreatedEvent -= OnNetworkClientViewCreated;
             }
         }
 
@@ -61,10 +80,17 @@ namespace TowerDefenceMultiplayer
             return _lobbyExitParams;
         }
         
-        private void OnClientConnected(ulong clientId)
+        private void OnClientConnectedInServer(ulong clientId)
         {
             var playerService = _container.Resolve<IPlayerService>();
             playerService.CreatePlayer(clientId, "", GetRandomPositionSpawn());
+        }
+
+        private void OnNetworkClientViewCreated(NetworkClientView networkClientView)
+        {
+            var clientFactoryViewModel = _container.Resolve<ClientFactoryViewModel>();
+            var networkClientViewModel = clientFactoryViewModel.CreateNetworkClientViewModel(networkClientView);
+            networkClientView.Bind(networkClientViewModel);
         }
 
         private Vector3 GetRandomPositionSpawn()

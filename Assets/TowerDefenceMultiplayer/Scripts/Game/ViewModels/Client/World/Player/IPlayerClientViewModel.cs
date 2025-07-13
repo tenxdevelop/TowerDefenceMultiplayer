@@ -2,7 +2,7 @@
 
 namespace TowerDefenceMultiplayer
 {
-    public class PlayerView : NetworkClientView
+    public interface IPlayerClientViewModel : INetworkViewModel
     {
         
     }

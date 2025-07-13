@@ -5,6 +5,6 @@ namespace TowerDefenceMultiplayer
 {
     public interface IMapViewModel : IViewModel
     {
-        ReactiveCollection<IPlayerViewModel> Players { get; }
+        ReactiveCollection<IPlayerServerViewModel> Players { get; }
     }
 }

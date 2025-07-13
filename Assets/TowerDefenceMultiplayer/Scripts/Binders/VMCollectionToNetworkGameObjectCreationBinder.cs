@@ -50,11 +50,13 @@ namespace TowerDefenceMultiplayer
         private void OnNetworkViewModelAdded(INetworkViewModel networkViewModel)
         {
             var newNetworkView = Instantiate(_prefabNetworkView);
-            newNetworkView.Bind(networkViewModel);
             _networkViewModelsMap[networkViewModel] = newNetworkView;
+            
+            newNetworkView.Bind(networkViewModel);
             
             var networkObject = newNetworkView.GetComponent<NetworkObject>();
             networkObject.SpawnAsPlayerObject(networkViewModel.GetClientId(), true);
+            
         }
     }
 }
