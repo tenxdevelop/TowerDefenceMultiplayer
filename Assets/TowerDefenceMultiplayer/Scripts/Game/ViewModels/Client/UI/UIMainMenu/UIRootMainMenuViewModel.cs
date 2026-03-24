@@ -2,7 +2,7 @@ using SkyForge.MVVM;
 
 namespace TowerDefenceMultiplayer
 {
-    public class UIRootMainMenuViewModel : IUIRootMainMenuViewModel
+    public class UIRootMainMenuViewModel : ViewModel, IUIRootMainMenuViewModel
     {
         [SubViewModel(typeof(UIServerPanelViewModel))]
         public IUIServerPanelViewModel UIServerPanelViewModel { get; private set; }
@@ -28,20 +28,10 @@ namespace TowerDefenceMultiplayer
             _applicationService =  applicationService;
         }
         
-        public void Dispose()
+        public override void Dispose()
         {
             UIServerPanelViewModel.OnCreatedLobbyEvent -= OnCreatedLobbyCallback;
             UIServerPanelViewModel.OnJoinedLobbyEvent -= OnJoinedLobbyCallback;
-        }
-
-        public void Update(float deltaTime)
-        {
-            
-        }
-
-        public void PhysicsUpdate(float deltaTime)
-        {
-            
         }
         
         [ReactiveMethod]

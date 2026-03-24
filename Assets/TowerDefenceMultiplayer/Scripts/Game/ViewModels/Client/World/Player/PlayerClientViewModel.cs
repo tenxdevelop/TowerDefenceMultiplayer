@@ -1,14 +1,15 @@
-﻿
+﻿using SkyForge.MVVM;
 using UnityEngine;
 
 namespace TowerDefenceMultiplayer
 {
-    public class PlayerClientViewModel : IPlayerClientViewModel
+    public class PlayerClientViewModel : ViewModel, IPlayerClientViewModel
     {
+        public ulong GetClientId() => 0;
         
         public void OnNetworkSpawn()
         {
-           
+            
         }
         
         public void OnNetworkDespawn()
@@ -16,24 +17,9 @@ namespace TowerDefenceMultiplayer
             
         }
         
-        public void Dispose()
+        public override void PhysicsUpdate(float deltaTime)
         {
             
-        }
-
-        public void Update(float deltaTime)
-        {
-            
-        }
-
-        public void PhysicsUpdate(float deltaTime)
-        {
-            Debug.Log("Player client update");
-        }
-
-        public ulong GetClientId()
-        {
-            return 0;
         }
         
     }

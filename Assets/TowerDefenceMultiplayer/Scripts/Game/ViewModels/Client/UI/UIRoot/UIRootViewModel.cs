@@ -1,9 +1,10 @@
 ﻿using SkyForge.Extension;
 using SkyForge.Reactive;
+using SkyForge.MVVM;
 
 namespace TowerDefenceMultiplayer
 {
-    public class UIRootViewModel : IUIRootViewModel
+    public class UIRootViewModel : ViewModel, IUIRootViewModel
     {
         public ReactiveProperty<bool> IsLoading { get; private set; } = new();
 
@@ -11,21 +12,6 @@ namespace TowerDefenceMultiplayer
 
         public ReactiveCollection<UIScreenView> Screens { get; private set; } = new();
         
-        public void Dispose()
-        {
-            
-        }
-
-        public void Update(float deltaTime)
-        {
-            
-        }
-
-        public void PhysicsUpdate(float deltaTime)
-        {
-            
-        }
-
         public void ShowLoadingScreen()
         {
             IsLoading.Value = true;

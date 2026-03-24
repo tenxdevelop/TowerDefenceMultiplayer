@@ -1,14 +1,15 @@
 ﻿using SkyForge.Reactive;
+using SkyForge.MVVM;
 using UnityEngine;
 
 namespace TowerDefenceMultiplayer
 {
-    public class PlayerServerViewModel : IPlayerServerViewModel
+    public class PlayerServerViewModel : ViewModel, IPlayerServerViewModel
     {
         public ReactiveProperty<Vector3> Position => _playerModel.Position;
 
-        private IPlayerModel _playerModel;
-        private IPlayerService _playerService;
+        private readonly IPlayerModel _playerModel;
+        private readonly IPlayerService _playerService;
         
         public PlayerServerViewModel(IPlayerModel playerModel, IPlayerService playerService)
         {
@@ -30,21 +31,6 @@ namespace TowerDefenceMultiplayer
         public ulong GetClientId()
         {
             return _playerModel.ClientId;
-        }
-        
-        public void Dispose()
-        {
-            
-        }
-
-        public void Update(float deltaTime)
-        {
-            Debug.Log("Player server update");
-        }
-
-        public void PhysicsUpdate(float deltaTime)
-        {
-            
         }
         
     }

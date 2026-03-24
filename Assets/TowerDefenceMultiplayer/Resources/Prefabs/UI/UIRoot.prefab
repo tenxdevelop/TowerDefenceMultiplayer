@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6939621435952826973}
   - component: {fileID: 13256269265968546}
-  - component: {fileID: 2855201692154275075}
+  - component: {fileID: 6501839940012681928}
   m_Layer: 0
   m_Name: StaticScreenContainer
   m_TagString: Untagged
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105e7ff6d44ad23449f05ffa540a27c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2855201692154275075
+--- !u!114 &6501839940012681928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,9 +54,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2033150120217985933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419118e53cb9cff40ba5bf3b17e87c8d, type: 3}
+  m_Script: {fileID: 11500000, guid: b6f94c1338824ac784857ca2746e3694, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: SkyForge::SkyForge.MVVM.Binders.UIScreenViewCollectionToUnityEventBinder
   m_viewModelTypeFullName: TowerDefenceMultiplayer.UIRootViewModel
   m_propertyName: StaticScreens
   _eventAdded:
@@ -76,8 +76,20 @@ MonoBehaviour:
         m_CallState: 2
   _eventRemoved:
     m_PersistentCalls:
-      m_Calls: []
-  _eventClear:
+      m_Calls:
+      - m_Target: {fileID: 13256269265968546}
+        m_TargetAssemblyTypeName: SkyForge.Extension.UIViewAttacher, SkyForge
+        m_MethodName: DetachSceneUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _eventCleared:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 13256269265968546}
@@ -366,7 +378,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -374,6 +385,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &5107303309353714751
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56145977815047774}
   - component: {fileID: 7480929076886830309}
-  - component: {fileID: 2487468117433245810}
+  - component: {fileID: 7851462130998035851}
   m_Layer: 0
   m_Name: DynamicScreenContainer
   m_TagString: Untagged
@@ -419,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105e7ff6d44ad23449f05ffa540a27c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2487468117433245810
+--- !u!114 &7851462130998035851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -428,9 +440,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5107303309353714751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419118e53cb9cff40ba5bf3b17e87c8d, type: 3}
+  m_Script: {fileID: 11500000, guid: b6f94c1338824ac784857ca2746e3694, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: SkyForge::SkyForge.MVVM.Binders.UIScreenViewCollectionToUnityEventBinder
   m_viewModelTypeFullName: TowerDefenceMultiplayer.UIRootViewModel
   m_propertyName: Screens
   _eventAdded:
@@ -450,8 +462,20 @@ MonoBehaviour:
         m_CallState: 2
   _eventRemoved:
     m_PersistentCalls:
-      m_Calls: []
-  _eventClear:
+      m_Calls:
+      - m_Target: {fileID: 7480929076886830309}
+        m_TargetAssemblyTypeName: SkyForge.Extension.UIViewAttacher, SkyForge
+        m_MethodName: DetachSceneUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _eventCleared:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7480929076886830309}
@@ -754,5 +778,5 @@ MonoBehaviour:
   m_subViews: []
   m_childBinders:
   - {fileID: 8474101048429965003}
-  - {fileID: 2855201692154275075}
-  - {fileID: 2487468117433245810}
+  - {fileID: 6501839940012681928}
+  - {fileID: 7851462130998035851}
