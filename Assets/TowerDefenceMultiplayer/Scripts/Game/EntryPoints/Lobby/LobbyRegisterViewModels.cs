@@ -12,7 +12,7 @@ namespace TowerDefenceMultiplayer
 
         public static void RegisterClientViewModels(DIContainer container, LobbyEnterParams lobbyEnterParams)
         {
-            container.RegisterSingleton<IPlayerClientViewModel>(factory => new PlayerClientViewModel());
+            container.RegisterSingleton<IPlayerClientViewModel>(factory => new PlayerClientViewModel(factory.Resolve<IGameInputProvider>().GetPlayerInputs(), factory.Resolve<IPlayerClientService>()));
         }
     }
 }

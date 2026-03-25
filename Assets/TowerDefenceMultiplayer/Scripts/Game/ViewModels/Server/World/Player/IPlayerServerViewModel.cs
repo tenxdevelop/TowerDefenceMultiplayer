@@ -7,5 +7,7 @@ namespace TowerDefenceMultiplayer
     public interface IPlayerServerViewModel : INetworkViewModel
     {
         ReactiveProperty<Vector3> Position { get; }
+
+        void UpdateMoveDirection(Vector2 direction);
     }
 }

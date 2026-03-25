@@ -21,11 +21,12 @@ namespace TowerDefenceMultiplayer
             var loadService = _container.Resolve<LoadService>();
             var prefabNetworkManager = loadService.LoadPrefab<NetworkManager>(LoadService.PREFAB_NETWORK_MANAGER);
             var networkManager = loadService.CreateGameObject(prefabNetworkManager);
+            _container.RegisterSingleton<NetworkService>(factory => new NetworkService(networkManager));
+            
             DontDestroyOnLoad(networkManager.gameObject);
             
             if (lobbyEnterParams.IsHost)
             {
-                
                 LobbyRegisterServices.RegisterServerServices(_container, lobbyEnterParams, _lobbyExitParams);
                 LobbyRegisterViewModels.RegisterServerViewModels(_container, lobbyEnterParams);
                 LobbyRegisterViews.RegisterServerViews(_container);
@@ -37,6 +38,8 @@ namespace TowerDefenceMultiplayer
                 ClientNetworkService.Instance.NetworkClientViewCreatedEvent += OnNetworkClientViewCreated;
                 
                 networkManager.StartHost();
+                
+                LobbyRegisterNetworkHandlers.RegisterServerNetworkMessageHandlers(_container);
             }
             else
             {
@@ -47,6 +50,7 @@ namespace TowerDefenceMultiplayer
                 ClientNetworkService.Instance.NetworkClientViewCreatedEvent += OnNetworkClientViewCreated;
                 
                 networkManager.StartClient();
+                
             }
 
             yield return null;

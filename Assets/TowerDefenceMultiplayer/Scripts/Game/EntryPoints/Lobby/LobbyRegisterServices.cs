@@ -17,11 +17,23 @@ namespace TowerDefenceMultiplayer
             container.RegisterInstance<ICommandProcessor>(commandProcessor);
             
             //Register services
-            container.RegisterSingleton<IPlayerService>(factory => new PlayerService(gameStateModel.Entities, factory.Resolve<ICommandProcessor>()));
+            container.RegisterSingleton<IPlayerService>(factory => new PlayerService(gameStateModel.Entities, 
+                factory.Resolve<ICommandProcessor>(), factory.Resolve<NetworkService>()));
         }
 
         public static void RegisterClientServices(DIContainer container, LobbyEnterParams lobbyEnterParams, SingleReactiveProperty<LobbyExitParams> lobbyExitParams)
         {
+            //Register input system
+            //TODO: make mapper in PlayerInput make PlayerInput concrete.
+            var gameInputProvider = new GameInputProvider(new GameInputMapper());
+            
+            gameInputProvider.RegisterInput<IPlayerInput, PlayerInput>();
+            
+            container.RegisterInstance<IGameInputProvider>(gameInputProvider);
+            
+            //Register services
+            container.RegisterSingleton<IPlayerClientService>(factory => new PlayerClientService());
+            
             container.RegisterSingleton<ClientFactoryViewModel>(factory => new ClientFactoryViewModel(factory));
         }
     }
