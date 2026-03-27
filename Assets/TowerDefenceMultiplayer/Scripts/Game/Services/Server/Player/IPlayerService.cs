@@ -9,5 +9,6 @@ namespace TowerDefenceMultiplayer
         ReactiveCollection<IPlayerServerViewModel> Players { get; }
         bool CreatePlayer(ulong clientId, string configId, Vector3 position);
         void RegisterNetworkMessageHandlers();
+        void MovePlayer(int entityId, Vector2 direction, float deltaTime);
     }
 }

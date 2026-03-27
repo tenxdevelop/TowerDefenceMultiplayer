@@ -13,6 +13,7 @@ namespace TowerDefenceMultiplayer
             var gameStateModel = container.Resolve<IGameStateProvider>().StateModel;
             
             commandProcessor.RegisterCommandHandler(new CmdCreatePlayerHandler(gameStateModel, container.Resolve<IEntityFactoryService>()));
+            commandProcessor.RegisterCommandHandler(new CmdMovePlayerHandler(gameStateModel));
             
             container.RegisterInstance<ICommandProcessor>(commandProcessor);
             
@@ -32,7 +33,7 @@ namespace TowerDefenceMultiplayer
             container.RegisterInstance<IGameInputProvider>(gameInputProvider);
             
             //Register services
-            container.RegisterSingleton<IPlayerClientService>(factory => new PlayerClientService());
+            container.RegisterSingleton<IPlayerClientService>(factory => new PlayerClientService(factory.Resolve<NetworkService>()));
             
             container.RegisterSingleton<ClientFactoryViewModel>(factory => new ClientFactoryViewModel(factory));
         }

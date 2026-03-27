@@ -6,7 +6,7 @@ namespace TowerDefenceMultiplayer
     {
         private readonly GameStateModel _gameStateModel;
         
-        private IEntityFactoryService _entityFactoryService;
+        private readonly IEntityFactoryService _entityFactoryService;
         
         public CmdCreatePlayerHandler(GameStateModel gameStateModel, IEntityFactoryService entityFactoryService)
         {

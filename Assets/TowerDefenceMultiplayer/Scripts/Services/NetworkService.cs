@@ -21,6 +21,12 @@ namespace TowerDefenceMultiplayer
         {
             _networkManager.CustomMessagingManager.UnregisterNamedMessageHandler(methodName);
         }
+
+        public void ClientSendNamedMessage(string messageName, FastBufferWriter writer)
+        {
+            var serverClientId = NetworkManager.ServerClientId;
+            NetworkManager.Singleton.CustomMessagingManager.SendNamedMessage(messageName, serverClientId, writer);
+        }
         
         public void Dispose()
         {

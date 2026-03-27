@@ -31,15 +31,19 @@ namespace TowerDefenceMultiplayer
             
         }
 
+        public override void PhysicsUpdate(float deltaTime)
+        {
+            _playerService.MovePlayer(_playerModel.UniqueId, _directionMove, deltaTime);
+        }
+
         public ulong GetClientId()
         {
             return _playerModel.ClientId;
         }
-
+        
         public void UpdateMoveDirection(Vector2 direction)
         {
             _directionMove = direction;
-            Debug.Log("player update direction move in server: " + direction);
         }
     }
 }

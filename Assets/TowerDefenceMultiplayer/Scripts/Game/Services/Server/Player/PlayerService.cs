@@ -17,6 +17,7 @@ namespace TowerDefenceMultiplayer
         
         private readonly ICommandProcessor _commandProcessor;
         private readonly NetworkService _networkService;
+        
         public PlayerService(ReactiveCollection<IEntityStateModel> entities, ICommandProcessor commandProcessor, NetworkService networkService)
         {
             _commandProcessor =  commandProcessor;
@@ -24,11 +25,16 @@ namespace TowerDefenceMultiplayer
             
             _playersMap = new Dictionary<int, IPlayerServerViewModel>();
             
-            
             UpdatePlayers(entities);
             
         }
 
+        public void MovePlayer(int entityId, Vector2 direction, float deltaTime)
+        {
+            var movePlayerCommand = new CmdMovePlayer(entityId, direction, deltaTime);
+            _commandProcessor.Process(movePlayerCommand);
+        }
+        
         public void RegisterNetworkMessageHandlers()
         {
             _networkService.RegisterNamedHandler(PLAYER_MOVE_DIRECTION_UPDATE_SERVER_RPC, OnPlayerMoveDirectionUpdateServerRpc);
@@ -94,7 +100,7 @@ namespace TowerDefenceMultiplayer
                 var playerModel = entityStateModel as IPlayerModel;
                 var playerViewModel = new PlayerServerViewModel(playerModel, this);
                 Players.Add(playerViewModel);
-                _playersMap[entityStateModel.UniqueId] = playerViewModel;
+                _playersMap[playerModel.UniqueId] = playerViewModel;
             }
         }
 
