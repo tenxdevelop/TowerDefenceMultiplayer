@@ -5,6 +5,10 @@ namespace TowerDefenceMultiplayer
 {
     public interface IMapViewModel : IViewModel
     {
-        ReactiveCollection<IPlayerServerViewModel> Players { get; }
+        ReactiveCollection<IEntityViewModel> Entities { get; }
+
+        void AttachEntityHasherService(IEntityViewModelHasherService entityHasherService);
+        
+        void DetachEntityHasherService(IEntityViewModelHasherService entityHasherService);
     }
 }

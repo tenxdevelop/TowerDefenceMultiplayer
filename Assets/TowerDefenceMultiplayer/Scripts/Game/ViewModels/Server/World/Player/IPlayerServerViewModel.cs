@@ -1,10 +1,9 @@
 ﻿using SkyForge.Reactive;
-using SkyForge.MVVM;
 using UnityEngine;
 
 namespace TowerDefenceMultiplayer
 {
-    public interface IPlayerServerViewModel : INetworkViewModel
+    public interface IPlayerServerViewModel : IEntityViewModel
     {
         ReactiveProperty<Vector3> Position { get; }
 

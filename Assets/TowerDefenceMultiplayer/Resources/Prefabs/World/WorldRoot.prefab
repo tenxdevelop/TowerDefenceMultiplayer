@@ -64,8 +64,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_viewModelTypeFullName: TowerDefenceMultiplayer.MapViewModel
-  m_propertyName: Players
-  _prefabNetworkView: {fileID: 9063010622220623563, guid: 2918cd0af5755d44791200834be956b6, type: 3}
+  m_propertyName: Entities
+  _prefabNetworkViews:
+  - EntityType: 1
+    Prefab: {fileID: 9063010622220623563, guid: 2918cd0af5755d44791200834be956b6, type: 3}
 --- !u!1 &3862914289473547060
 GameObject:
   m_ObjectHideFlags: 0

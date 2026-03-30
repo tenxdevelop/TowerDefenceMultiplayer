@@ -12,7 +12,7 @@ namespace TowerDefenceMultiplayer
                     var playerModel = new PlayerModel(entityStateData as PlayerData);
                     return playerModel;
                 default:
-                    throw new NotImplementedException($"not implemented create factory method for entity type: {entityStateData.entityType}");
+                    throw new NotImplementedException($"not implemented create entity model factory method for entity type: {entityStateData.entityType}");
             }
         }
 
@@ -27,7 +27,6 @@ namespace TowerDefenceMultiplayer
                     throw new NotImplementedException($"not implemented get entity state factory method for entity type: {entityStateModel.EntityType}");
             }
         }
-        
         public void Dispose()
         {
             

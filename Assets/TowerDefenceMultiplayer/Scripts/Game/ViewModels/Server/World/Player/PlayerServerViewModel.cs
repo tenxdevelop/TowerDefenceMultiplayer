@@ -6,6 +6,7 @@ namespace TowerDefenceMultiplayer
 {
     public class PlayerServerViewModel : ViewModel, IPlayerServerViewModel
     {
+        public EntityType EntityType => EntityType.Player;
         public ReactiveProperty<Vector3> Position => _playerModel.Position;
 
         private readonly IPlayerModel _playerModel;

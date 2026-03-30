@@ -18,8 +18,10 @@ namespace TowerDefenceMultiplayer
             container.RegisterInstance<ICommandProcessor>(commandProcessor);
             
             //Register services
-            container.RegisterSingleton<IPlayerService>(factory => new PlayerService(gameStateModel.Entities, 
+            container.RegisterSingleton<IPlayerService>(factory => new PlayerService( 
                 factory.Resolve<ICommandProcessor>(), factory.Resolve<NetworkService>()));
+            
+            container.RegisterSingleton<IEntityViewModelFactoryService>(factory => new EntityViewModelFactoryService(factory));
         }
 
         public static void RegisterClientServices(DIContainer container, LobbyEnterParams lobbyEnterParams, SingleReactiveProperty<LobbyExitParams> lobbyExitParams)

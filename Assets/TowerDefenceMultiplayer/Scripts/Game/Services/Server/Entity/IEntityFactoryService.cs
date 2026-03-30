@@ -6,6 +6,5 @@ namespace TowerDefenceMultiplayer
     {
         public IEntityStateModel CreateEntityModel(EntityStateData entityStateData);
         public EntityStateData GetEntityStateData(IEntityStateModel entityStateModel);
-        
     }
 }

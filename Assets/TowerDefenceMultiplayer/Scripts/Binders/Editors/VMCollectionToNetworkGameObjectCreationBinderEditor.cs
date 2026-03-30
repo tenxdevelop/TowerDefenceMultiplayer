@@ -10,7 +10,7 @@ using SkyForge;
 
 namespace TowerDefenceMultiplayer.Editor
 {
-    [CustomEditor(typeof(VMCollectionToNetworkGameObjectCreationBinder))]
+    [CustomEditor(typeof(EntityVMCollectionToNetworkGameObjectCreationBinder))]
     public class VMCollectionToNetworkGameObjectCreationBinderEditor : BinderEditor
     {
         protected override IEnumerable<string> GetPropertyNames()

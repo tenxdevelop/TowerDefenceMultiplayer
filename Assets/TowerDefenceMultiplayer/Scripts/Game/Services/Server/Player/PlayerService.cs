@@ -11,22 +11,19 @@ namespace TowerDefenceMultiplayer
     public class PlayerService : IPlayerService
     {
         public const string PLAYER_MOVE_DIRECTION_UPDATE_SERVER_RPC = nameof(PLAYER_MOVE_DIRECTION_UPDATE_SERVER_RPC);
-        public ReactiveCollection<IPlayerServerViewModel> Players { get; private set; }
-
-        private readonly Dictionary<int, IPlayerServerViewModel> _playersMap;
+        
+        //clientId, playerServerViewModel
+        private readonly Dictionary<ulong, IPlayerServerViewModel> _playersMap;
         
         private readonly ICommandProcessor _commandProcessor;
         private readonly NetworkService _networkService;
         
-        public PlayerService(ReactiveCollection<IEntityStateModel> entities, ICommandProcessor commandProcessor, NetworkService networkService)
+        public PlayerService(ICommandProcessor commandProcessor, NetworkService networkService)
         {
             _commandProcessor =  commandProcessor;
             _networkService = networkService;
             
-            _playersMap = new Dictionary<int, IPlayerServerViewModel>();
-            
-            UpdatePlayers(entities);
-            
+            _playersMap = new Dictionary<ulong, IPlayerServerViewModel>();
         }
 
         public void MovePlayer(int entityId, Vector2 direction, float deltaTime)
@@ -55,64 +52,45 @@ namespace TowerDefenceMultiplayer
 
         private void OnPlayerMoveDirectionUpdateServerRpc(ulong clientId, FastBufferReader reader)
         {
-            var player = Players.Where(player => player.GetClientId() == clientId).FirstOrDefault();
-
-            if (player is null)
-                return;
-            
-            reader.ReadValueSafe(out Vector2 direction);
-            
-            player.UpdateMoveDirection(direction.normalized);
-        }
-        
-        private void UpdatePlayers(ReactiveCollection<IEntityStateModel> entities)
-        {
-            Players = new ReactiveCollection<IPlayerServerViewModel>();
-            
-            foreach (var entity in entities)
+            if (_playersMap.TryGetValue(clientId, out var playerViewModel))
             {
-                CreatePlayerViewModel(entity);
+                reader.ReadValueSafe(out Vector2 direction);
+                playerViewModel.UpdateMoveDirection(direction.normalized);
             }
-
-            entities.Subscribe(OnEntitiesAdded, OnEntitiesRemoved, OnPlayersClear);
         }
 
-        private void OnPlayersClear()
+        public void OnClearEntities()
         {
-            Players.Clear();
             _playersMap.Clear();
         }
 
-        private void OnEntitiesRemoved(IEntityStateModel entityStateModel)
-        {
-            RemovePlayerViewModel(entityStateModel);
-        }
-
-        private void OnEntitiesAdded(IEntityStateModel entityStateModel)
-        {
-            CreatePlayerViewModel(entityStateModel);
-        }
-        
-        private void CreatePlayerViewModel(IEntityStateModel entityStateModel)
+        public void OnCreateEntityViewModel(IEntityStateModel entityStateModel, IEntityViewModel entityViewModel)
         {
             if (entityStateModel.EntityType.Equals(EntityType.Player))
             {
-                var playerModel = entityStateModel as IPlayerModel;
-                var playerViewModel = new PlayerServerViewModel(playerModel, this);
-                Players.Add(playerViewModel);
-                _playersMap[playerModel.UniqueId] = playerViewModel;
+                var playerStateModel = entityStateModel as IPlayerModel;
+
+                if (playerStateModel is null)
+                {
+                    Debug.LogError("create player view model, but entity state model is not player model");
+                    return;
+                }
+
+                var playerViewModel = entityViewModel as IPlayerServerViewModel;
+                _playersMap[playerStateModel.ClientId]  = playerViewModel;
             }
         }
 
-        private void RemovePlayerViewModel(IEntityStateModel entityStateModel)
+        public void OnRemoveEntityViewModel(IEntityStateModel entityStateModel)
         {
             if (entityStateModel.EntityType.Equals(EntityType.Player))
             {
-                if (_playersMap.TryGetValue(entityStateModel.UniqueId, out var playerViewModelDelete))
-                {
-                    Players.Remove(playerViewModelDelete);
-                    _playersMap.Remove(entityStateModel.UniqueId);
-                }
+                var playerStateModel = entityStateModel as IPlayerModel;
+
+                if (playerStateModel is null)
+                    return;
+                
+                _playersMap.Remove(playerStateModel.ClientId);
             }
         }
     }
